@@ -4,9 +4,11 @@ Simple HTTP Server
 Jesus M. Gonzalez-Barahona and Gregorio Robles
 {jgb, grex} @ gsyc.es
 SAT and SARO subjects (Universidad Rey Juan Carlos)
+alumna: Meritxell Diaz
 """
 
 import socket
+#import calculadora2
 
 # Create a TCP objet socket and bind it to a port
 # We bind to 'localhost', therefore only accepts connections from the
@@ -15,7 +17,7 @@ import socket
 # let's use one above 1024
 
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mySocket.bind(('localhost', 1234))
+mySocket.bind(('localhost', 1238))
 
 # Queue a maximum of 5 TCP connection requests
 
@@ -28,7 +30,9 @@ while True:
     print('Waiting for connections')
     (recvSocket, address) = mySocket.accept()
     print('HTTP request received:')
-    print(recvSocket.recv(1024))
+    #print(recvSocket.recv(1024))
+    prueba = str(recvSocket.recv(1024)).split('/')
+    print("ESTO ES UN PRUEBA" + prueba[1])
     recvSocket.send(b"HTTP/1.1 200 OK\r\n\r\n" +
                     b"<html><body><h1>Hello World!</h1></body></html>" +
                     b"\r\n")
