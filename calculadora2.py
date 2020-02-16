@@ -11,26 +11,18 @@ operations = {
     "dividir": operator.truediv
 }
 
-if len(sys.argv) != 4:
-    print("Introduce una operacion y dos operandos")
-    sys.exit(1)
+def calcular(func, op1, op2):
+	if func not in operations:
+	    return "Introduce una operacion: sumar, restar, multiplicar o dividir"
+	try:
+	    op1 =  float(op1)
+	    op2 =  float(op2)
+	except ValueError:
+	    return "Introduce un operando valido tipo decimal"
+	try:
+	    result = operations[func](op1, op2)
+	except ZeroDivisionError:
+	    return "Para realizar una division el divisor debe ser distinto de 0"
+	return "El resultado es: "+ str(result)
 
-operation = sys.argv[1]
-if operation not in operations:
-    print("Introduce una operacion: add, sub, mul o div")
-    sys.exit(1)
-try:
-    op1 =  float(sys.argv[2])
-    op2 =  float(sys.argv[3])
-except ValueError:
-    print("Introduce un operando valido tipo decimal")
-    sys.exit(1)
-
-try:
-    result = operations[operation](op1, op2)
-except ZeroDivisionError:
-    print("Para realizar una division el divisor debe ser distinto de 0")
-    sys.exit(1)
-
-
-print("El resultado es: "+ str(result))
+	
