@@ -17,6 +17,8 @@ import socket
 
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Let the port be reused if no process is actually using it
+# ahora al llamar al server en el nav se pone lo que sale detras de
+# @ en el terminal, o bien con la ip 212.128.255....
 mySocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 # Bind to the address corresponding to the main name of the host
 mySocket.bind((socket.gethostname(), 1235))
@@ -30,6 +32,7 @@ mySocket.listen(5)
 try:
     while True:
         print('Waiting for connections')
+        #addres es una tupla, pos 0 con la ip
         (recvSocket, address) = mySocket.accept()
         print('Request received:')
         print(recvSocket.recv(2048))
