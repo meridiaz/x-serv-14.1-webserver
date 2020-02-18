@@ -36,6 +36,7 @@ while True:
     (recvSocket, address) = mySocket.accept()#le digo al socket que empiece a recibir
     print('HTTP request received:')
     peti = recvSocket.recv(1024)
+    print(peti)
 
     if str(peti).find("GET") == -1:
         #si estoy aqui es que me han puesto una peticion vacia, caso que ocurre
